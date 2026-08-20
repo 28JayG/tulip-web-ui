@@ -2,7 +2,7 @@
 
 **Last Updated:** 28/09/2025.
 
-Welcome to **Flexfolio** (“we,” “our,” or “us”). Your privacy is important to us, and this Privacy Policy explains how we collect, use, and protect your personal information when you use our website [www.flexfolio.com](https://www.flexfolio.com) (the “Site”) and any related services (collectively, the “Services”).
+Welcome to **Tulip** (“we,” “our,” or “us”). Your privacy is important to us, and this Privacy Policy explains how we collect, use, and protect your personal information when you use our website [www.tulipai.com](https://www.tulipai.com) (the “Site”) and any related services (collectively, the “Services”).
 
 ### 1. Information We Collect
 
@@ -52,7 +52,7 @@ Depending on your location, you may have the right to:
 - Opt out of marketing communications
 - Request data portability
 
-To exercise these rights, please contact us at [support@flexfolio.com](mailto:support@flexfolio.com).
+To exercise these rights, please contact us at [support@tulipai.com](mailto:support@tulipai.com).
 
 ### 8. Changes to This Policy
 
@@ -62,5 +62,5 @@ We may update this Privacy Policy periodically. Any changes will be posted on th
 
 If you have questions about this Privacy Policy, please contact us at:
 
-- **Email:** [support@flexfolio.com](mailto:support@flexfolio.com)
-- **Website:** [www.flexfolio.com](https://www.flexfolio.com)
+- **Email:** [support@tulipai.com](mailto:support@tulipai.com)
+- **Website:** [www.tulipai.com](https://www.tulipai.com)

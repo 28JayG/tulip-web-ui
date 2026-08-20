@@ -6,6 +6,7 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/data/**/*.{js,ts,jsx,tsx,mdx,json,md}",
   ],
   theme: {
     extend: {
@@ -42,9 +43,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Inter", "sans-serif"],
+        sans: ["var(--font-geist-sans)", "sans-serif"],
         heading: ["var(--font-geist-sans)", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",

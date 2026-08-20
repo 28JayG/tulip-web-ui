@@ -77,18 +77,22 @@ export function HeroSection() {
               </span>
             </div>
 
-            {/* Headline with orange 'design' highlight */}
+            {/* Headline with dynamic highlight */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight text-[#1e0d01] font-heading leading-[1.12] mb-6 max-w-3xl">
-              The <span className="text-[#f97518]">design</span> layer for software{" "}
-              <br className="hidden sm:inline" />
-              that actually ships
+              {hero.title.split(/(design)/i).map((part, i) =>
+                part.toLowerCase() === "design" ? (
+                  <span key={i} className="text-[#f97518]">
+                    {part}
+                  </span>
+                ) : (
+                  part
+                )
+              )}
             </h1>
 
             {/* Subheading */}
-            <p className="text-sm sm:text-base md:text-lg text-[#1e0d01]/70 leading-relaxed max-w-2xl mx-auto mb-8">
-              Tulip turns your product vision into a working system that powers everything from{" "}
-              <br className="hidden md:inline" />
-              a Figma system and a production React repo, delivered in 48 hours.
+            <p className="text-sm sm:text-base md:text-lg text-[#1e0d01]/70 leading-relaxed max-w-2xl mx-auto mb-8 whitespace-pre-line">
+              {hero.description}
             </p>
 
             {/* CTA Button */}
@@ -100,7 +104,7 @@ export function HeroSection() {
                 asChild
               >
                 <Link href={hero.cta.href}>
-                  <span>Start a sprint</span>
+                  <span>{hero.cta.label}</span>
                   <ChevronRight className="h-4 w-4 stroke-[2.5]" />
                 </Link>
               </Button>

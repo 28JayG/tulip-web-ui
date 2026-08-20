@@ -51,24 +51,82 @@
   },
   "metrics": {
     "badge": "The frontend bottleneck",
+    "manifestoText": "Interfaces that look pretty but are impossible for developers to actually deploy. Traditional agencies charge $15,000 and take five weeks just to draw wireframes. Tulip bridges the gap: strict, deterministic UI infrastructure in 48 hours.",
     "items": [
       {
         "id": "metric-1",
         "value": "48h",
+        "number": 48,
+        "suffix": "h",
         "label": "Garaunteed Delivery",
         "color": "primary"
       },
       {
         "id": "metric-2",
         "value": "100%",
+        "number": 100,
+        "suffix": "%",
         "label": "Native Components",
         "color": "lime"
       },
       {
         "id": "metric-3",
         "value": "0%",
+        "number": 0,
+        "suffix": "%",
         "label": "Hallucinated CSS",
         "color": "coral"
+      }
+    ],
+
+    "chips": [
+      {
+        "id": "chip-1",
+        "label": "Faster workflow",
+        "className": "top-[6%] right-[8%]",
+        "bgGradient": "bg-gradient-to-r from-[#b57bff] to-[#8d47fe]",
+        "shadowColor": "shadow-[#8d47fe]/30",
+        "initialRotation": -14
+      },
+      {
+        "id": "chip-2",
+        "label": "B2B Platforms",
+        "className": "top-[24%] right-[22%]",
+        "bgGradient": "bg-gradient-to-r from-[#ffbd59] to-[#ff914d]",
+        "shadowColor": "shadow-[#ff914d]/30",
+        "initialRotation": -6
+      },
+      {
+        "id": "chip-3",
+        "label": "No-Code Tools",
+        "className": "top-[42%] right-[6%]",
+        "bgGradient": "bg-gradient-to-r from-[#70d6ff] to-[#38b6ff]",
+        "shadowColor": "shadow-[#38b6ff]/30",
+        "initialRotation": 8
+      },
+      {
+        "id": "chip-4",
+        "label": "Startup Studios",
+        "className": "bottom-[28%] left-[6%]",
+        "bgGradient": "bg-gradient-to-r from-[#b7eb50] to-[#95d52b]",
+        "shadowColor": "shadow-[#95d52b]/30",
+        "initialRotation": -16
+      },
+      {
+        "id": "chip-5",
+        "label": "Lead Gen Tools",
+        "className": "bottom-[14%] right-[24%]",
+        "bgGradient": "bg-gradient-to-r from-[#ff9a62] to-[#ff7b54]",
+        "shadowColor": "shadow-[#ff7b54]/30",
+        "initialRotation": 12
+      },
+      {
+        "id": "chip-6",
+        "label": "AI - Startups",
+        "className": "bottom-[2%] right-[6%]",
+        "bgGradient": "bg-gradient-to-r from-[#4ef2bb] to-[#1fd1a5]",
+        "shadowColor": "shadow-[#1fd1a5]/30",
+        "initialRotation": -7
       }
     ]
   },

@@ -37,7 +37,7 @@ export function Header() {
             <Link href="/" className="flex items-center gap-2 group shrink-0">
               <div className="relative h-6 w-6 sm:h-7 sm:w-7 shrink-0">
                 <Image
-                  src="/assets/LpiQY6dDIz3qm4zXwVErubvLhk.png"
+                  src="/logo.png"
                   alt="Tulip Logo"
                   fill
                   className="object-contain"

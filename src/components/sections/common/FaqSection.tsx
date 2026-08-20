@@ -65,8 +65,7 @@ export function FaqSection() {
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-[#1e0d01] font-heading mb-4 leading-[1.15]">
-                Frequently <br />
-                Asked Questions
+                {faqsData.title}
               </h2>
 
               <p className="text-sm sm:text-base text-[#1e0d01]/70 leading-relaxed mb-8 max-w-md">
