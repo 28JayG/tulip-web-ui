@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import navigationData from "@/data/navigation.json";
-import { Container } from "@/components/layout/Container";
-import { ChevronDown, ChevronRight, Menu, X, Users } from "lucide-react";
+import React, { useState, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import navigationData from '@/data/navigation.json';
+import { Container } from '@/components/layout/Container';
+import { ChevronDown, ChevronRight, Menu, X, Users } from 'lucide-react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,50 +29,53 @@ export function Header() {
   };
 
   return (
-    <header className="relative z-50 w-full bg-transparent">
-      <div className="py-4 sm:py-5">
+    <header className='relative z-50 w-full bg-transparent'>
+      <div className='py-4 sm:py-5'>
         <Container>
-          <div className="flex items-center justify-between gap-4">
+          <div className='flex items-center justify-between gap-4'>
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group shrink-0">
-              <div className="relative h-6 w-6 sm:h-7 sm:w-7 shrink-0">
+            <Link href='/' className='flex items-center gap-2 group shrink-0'>
+              <div className='relative h-6 w-6 sm:h-7 sm:w-7 shrink-0'>
                 <Image
-                  src="/logo.png"
-                  alt="Tulip Logo"
+                  src='/logo.png'
+                  alt='Tulip Logo'
                   fill
-                  className="object-contain"
+                  className='object-contain'
                   priority
                 />
               </div>
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#1e0d01] font-heading">
+              <span className='text-xl sm:text-2xl font-bold tracking-tight text-[#1e0d01] font-heading'>
                 Tulip
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-5 lg:gap-8 shrink-0">
+            <nav className='hidden md:flex items-center gap-5 lg:gap-8 shrink-0'>
               {links.map((link, idx) => {
-                const label = "label" in link ? link.label : (link as any).title;
+                const label =
+                  'label' in link ? link.label : (link as any).title;
                 const href = link.href;
-                const isDropdown = label === "The Product";
+                const isDropdown = label === 'The Product';
 
                 if (isDropdown) {
                   return (
                     <div
                       key={idx}
-                      className="relative group py-2"
+                      className='relative group py-2'
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
                       <button
-                        onClick={() => setProductDropdownOpen(!productDropdownOpen)}
-                        className="flex items-center gap-1 text-xs lg:text-sm font-medium text-[#1e0d01]/80 hover:text-[#1e0d01] transition-colors cursor-pointer"
+                        onClick={() =>
+                          setProductDropdownOpen(!productDropdownOpen)
+                        }
+                        className='flex items-center gap-1 text-xs lg:text-sm font-medium text-[#1e0d01]/80 hover:text-[#1e0d01] transition-colors cursor-pointer'
                         aria-expanded={productDropdownOpen}
                       >
                         <span>{label}</span>
                         <ChevronDown
                           className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 ${
-                            productDropdownOpen ? "rotate-180" : ""
+                            productDropdownOpen ? 'rotate-180' : ''
                           }`}
                         />
                       </button>
@@ -80,29 +83,29 @@ export function Header() {
                       {/* Dropdown Container with invisible bridge padding to prevent mouse-leave */}
                       {productDropdownOpen && (
                         <div
-                          className="absolute top-full left-0 pt-2 w-48 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                          className='absolute top-full left-0 pt-2 w-48 z-50 animate-in fade-in slide-in-from-top-1 duration-150'
                           onMouseEnter={handleMouseEnter}
                           onMouseLeave={handleMouseLeave}
                         >
-                          <div className="rounded-2xl bg-white p-2 shadow-xl border border-[rgba(30,13,1,0.08)] flex flex-col space-y-0.5">
+                          <div className='rounded-2xl bg-white p-2 shadow-xl border border-[rgba(30,13,1,0.08)] flex flex-col space-y-0.5'>
                             <Link
-                              href="/#bundle"
+                              href='/#bundle'
                               onClick={() => setProductDropdownOpen(false)}
-                              className="block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors"
+                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
                             >
                               All-in-One Bundle
                             </Link>
                             <Link
-                              href="/#workflow"
+                              href='/#workflow'
                               onClick={() => setProductDropdownOpen(false)}
-                              className="block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors"
+                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
                             >
                               Sprint Workflow
                             </Link>
                             <Link
-                              href="/#engine"
+                              href='/#engine'
                               onClick={() => setProductDropdownOpen(false)}
-                              className="block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors"
+                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
                             >
                               Integration Engine
                             </Link>
@@ -117,7 +120,7 @@ export function Header() {
                   <Link
                     key={idx}
                     href={href}
-                    className="text-xs lg:text-sm font-medium text-[#1e0d01]/80 hover:text-[#1e0d01] transition-colors py-2"
+                    className='text-xs lg:text-sm font-medium text-[#1e0d01]/80 hover:text-[#1e0d01] transition-colors py-2'
                   >
                     {label}
                   </Link>
@@ -126,35 +129,39 @@ export function Header() {
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-2.5 lg:gap-3 shrink-0">
+            <div className='hidden md:flex items-center gap-2.5 lg:gap-3 shrink-0'>
               {/* Client Login Pill */}
               <Link
-                href="https://tulipai.framer.website/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-[rgba(30,13,1,0.12)] bg-transparent hover:bg-white/60 px-3.5 lg:px-4 py-2 text-xs lg:text-sm font-semibold text-[#f97518] transition-all shrink-0"
+                href='https://tulipai.framer.website/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex items-center gap-1.5 rounded-full border border-[rgba(30,13,1,0.12)] bg-transparent hover:bg-white/60 px-3.5 lg:px-4 py-2 text-xs lg:text-sm font-semibold text-[#f97518] transition-all shrink-0'
               >
-                <span>Client Login</span>
-                <Users className="h-3.5 w-3.5 stroke-[#f97518]" />
+                <span>Sign In</span>
+                <Users className='h-3.5 w-3.5 stroke-[#f97518]' />
               </Link>
 
               {/* Start a Sprint Solid Button */}
               <Link
-                href="/#pricing"
-                className="flex items-center gap-1.5 rounded-full bg-white hover:bg-white/90 px-4 lg:px-4.5 py-2 text-xs lg:text-sm font-semibold text-[#1e0d01] shadow-xs border border-[rgba(30,13,1,0.06)] hover:shadow-sm transition-all shrink-0 whitespace-nowrap"
+                href='/#pricing'
+                className='flex items-center gap-1.5 rounded-full bg-white hover:bg-white/90 px-4 lg:px-4.5 py-2 text-xs lg:text-sm font-semibold text-[#1e0d01] shadow-xs border border-[rgba(30,13,1,0.06)] hover:shadow-sm transition-all shrink-0 whitespace-nowrap'
               >
                 <span>Start a Sprint</span>
-                <ChevronRight className="h-3.5 w-3.5 stroke-[2.5]" />
+                <ChevronRight className='h-3.5 w-3.5 stroke-[2.5]' />
               </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 border border-neutral-200 text-[#1e0d01] shrink-0"
-              aria-label="Toggle navigation menu"
+              className='md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 border border-neutral-200 text-[#1e0d01] shrink-0'
+              aria-label='Toggle navigation menu'
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? (
+                <X className='h-5 w-5' />
+              ) : (
+                <Menu className='h-5 w-5' />
+              )}
             </button>
           </div>
         </Container>
@@ -162,10 +169,10 @@ export function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-neutral-200/80 bg-white/95 backdrop-blur-md px-6 py-6 space-y-4 shadow-xl">
-          <nav className="flex flex-col space-y-3.5">
+        <div className='md:hidden border-b border-neutral-200/80 bg-white/95 backdrop-blur-md px-6 py-6 space-y-4 shadow-xl'>
+          <nav className='flex flex-col space-y-3.5'>
             {links.map((link, idx) => {
-              const label = "label" in link ? link.label : (link as any).title;
+              const label = 'label' in link ? link.label : (link as any).title;
               const href = link.href;
 
               return (
@@ -173,7 +180,7 @@ export function Header() {
                   key={idx}
                   href={href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-semibold text-[#1e0d01] hover:text-[#f97518] py-1 transition-colors"
+                  className='text-sm font-semibold text-[#1e0d01] hover:text-[#f97518] py-1 transition-colors'
                 >
                   {label}
                 </Link>
@@ -181,25 +188,25 @@ export function Header() {
             })}
           </nav>
 
-          <div className="pt-4 border-t border-neutral-100 flex flex-col gap-2.5">
+          <div className='pt-4 border-t border-neutral-100 flex flex-col gap-2.5'>
             <Link
-              href="https://tulipai.framer.website/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href='https://tulipai.framer.website/'
+              target='_blank'
+              rel='noopener noreferrer'
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-1.5 rounded-full border border-[#f97518]/30 bg-transparent py-2.5 text-xs font-bold text-[#f97518]"
+              className='flex items-center justify-center gap-1.5 rounded-full border border-[#f97518]/30 bg-transparent py-2.5 text-xs font-bold text-[#f97518]'
             >
               <span>Client Login</span>
-              <Users className="h-3.5 w-3.5 stroke-[#f97518]" />
+              <Users className='h-3.5 w-3.5 stroke-[#f97518]' />
             </Link>
 
             <Link
-              href="/#pricing"
+              href='/#pricing'
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-xs font-bold text-[#1e0d01] shadow-xs border border-neutral-200"
+              className='flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-xs font-bold text-[#1e0d01] shadow-xs border border-neutral-200'
             >
               <span>Start a Sprint</span>
-              <ChevronRight className="h-3.5 w-3.5 stroke-[2.5]" />
+              <ChevronRight className='h-3.5 w-3.5 stroke-[2.5]' />
             </Link>
           </div>
         </div>

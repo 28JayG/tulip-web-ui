@@ -5,6 +5,10 @@
   },
   "links": [
     {
+      "label": "Home",
+      "href": "/"
+    },
+    {
       "label": "The Product",
       "href": "/#bundle"
     },
@@ -23,7 +27,7 @@
   ],
   "actions": [
     {
-      "label": "Client Login",
+      "label": "Sign In",
       "href": "https://tulipai.framer.website/",
       "variant": "ghost"
     },
