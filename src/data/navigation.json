@@ -9,16 +9,12 @@
       "href": "/"
     },
     {
-      "label": "The Product",
+      "label": "Product",
       "href": "/#bundle"
     },
     {
-      "label": "Integration",
+      "label": "Engine",
       "href": "/#engine"
-    },
-    {
-      "label": "Wall of Love",
-      "href": "/#testimonials"
     },
     {
       "label": "Pricing",

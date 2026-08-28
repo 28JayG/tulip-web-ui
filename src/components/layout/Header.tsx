@@ -55,66 +55,6 @@ export function Header() {
                 const label =
                   'label' in link ? link.label : (link as any).title;
                 const href = link.href;
-                const isDropdown = label === 'The Product';
-
-                if (isDropdown) {
-                  return (
-                    <div
-                      key={idx}
-                      className='relative group py-2'
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <button
-                        onClick={() =>
-                          setProductDropdownOpen(!productDropdownOpen)
-                        }
-                        className='flex items-center gap-1 text-xs lg:text-sm font-medium text-[#1e0d01]/80 hover:text-[#1e0d01] transition-colors cursor-pointer'
-                        aria-expanded={productDropdownOpen}
-                      >
-                        <span>{label}</span>
-                        <ChevronDown
-                          className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 ${
-                            productDropdownOpen ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-
-                      {/* Dropdown Container with invisible bridge padding to prevent mouse-leave */}
-                      {productDropdownOpen && (
-                        <div
-                          className='absolute top-full left-0 pt-2 w-48 z-50 animate-in fade-in slide-in-from-top-1 duration-150'
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          <div className='rounded-2xl bg-white p-2 shadow-xl border border-[rgba(30,13,1,0.08)] flex flex-col space-y-0.5'>
-                            <Link
-                              href='/#bundle'
-                              onClick={() => setProductDropdownOpen(false)}
-                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
-                            >
-                              All-in-One Bundle
-                            </Link>
-                            <Link
-                              href='/#workflow'
-                              onClick={() => setProductDropdownOpen(false)}
-                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
-                            >
-                              Sprint Workflow
-                            </Link>
-                            <Link
-                              href='/#engine'
-                              onClick={() => setProductDropdownOpen(false)}
-                              className='block rounded-xl px-3.5 py-2.5 text-xs font-medium text-[#1e0d01] hover:bg-neutral-50 hover:text-[#f97518] transition-colors'
-                            >
-                              Integration Engine
-                            </Link>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
 
                 return (
                   <Link
