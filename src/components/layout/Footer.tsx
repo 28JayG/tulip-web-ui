@@ -52,10 +52,7 @@ export function Footer() {
           <div className='md:col-span-4 flex flex-col justify-between'>
             <div>
               {/* Logo */}
-              <Link
-                href='/'
-                className='flex items-center gap-2 mb-4 group'
-              >
+              <Link href='/' className='flex items-center gap-2 mb-4 group'>
                 <div className='relative h-6 w-6 sm:h-7 sm:w-7 shrink-0'>
                   <Image
                     src='/logo.png'

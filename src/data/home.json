@@ -139,35 +139,35 @@
         "id": "bundle-1",
         "title": "Master Figma System",
         "description": "A pristine file pre-configured with strict local variables, semantic color tokens, and locked-in typography.",
-        "icon": "/assets/EvSBlZuZ15OyQt6RrwgJukILPDM.svg",
+        "icon": "figma",
         "image": "/assets/fJMMzQWbchAcNrvxPyjySeQcU.png"
       },
       {
         "id": "bundle-2",
         "title": "Production React Repo",
         "description": "Your exact 1:1 engineering mirror. Clean, accessible components ready to drop into any Next.js environment.",
-        "icon": "/assets/jlASXaztiU06TlenPXb5F9hHUw.svg",
+        "icon": "terminal",
         "image": "/assets/6rjXtbd8E2FHwFV3zjojDd9QI.png"
       },
       {
         "id": "bundle-3",
         "title": "High-Legibility Typography",
         "description": "Standardized text for maximum readability across dense financial or analytical dashboards.",
-        "icon": "/assets/E0tsCICGDptSXV7uyT4i69f5BbY.svg",
+        "icon": "type",
         "image": "/assets/IeoZkp15RNnms3DLvQu03eYkRRA.png"
       },
       {
         "id": "bundle-4",
         "title": "Native Iconography",
         "description": "We strip out generic open-source icons and embed proprietary, sharp SVGs directly into your UI blocks.",
-        "icon": "/assets/Ma6eEotI5dVZblC43qnZMVno3Nw.svg",
+        "icon": "image",
         "image": "/assets/OkLS35BGhVWI8Rae54CP13jG5M.png"
       },
       {
         "id": "bundle-5",
         "title": "The 48-Hour Handoff",
         "description": "You receive a complete UI bundle. Download your Master Figma file, your synchronized GitHub repository, and your custom coded layouts, ready for your backend engineers.",
-        "icon": "/assets/B5HGoFOY5NM7QEaHnjkDRDMx0E.svg",
+        "icon": "zap",
         "image": "/assets/LjoxM75Qd30oQtgpVAY3zPBwI.png"
       }
     ]
