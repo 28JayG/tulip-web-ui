@@ -8,7 +8,7 @@
     "description": "Tulip turns your product vision into a working system that powers everything from a Figma system and a production React repo, delivered in 48 hours.",
     "cta": {
       "label": "Start a sprint",
-      "href": "#pricing"
+      "href": "/contact"
     },
     "rating": {
       "score": "5.0",
@@ -244,6 +244,7 @@
         "description": "Figma Master System",
         "buttonText": "Buy Figma System",
         "buttonVariant": "outline",
+        "buttonHref": "/contact?plan=The%20Blueprint",
         "features": [
           "Token registry",
           "Component library",
@@ -263,6 +264,7 @@
         "popular": true,
         "buttonText": "Get Started Now",
         "buttonVariant": "primary",
+        "buttonHref": "/contact?plan=The%20Core%20Sprint",
         "features": [
           "Master Figma System",
           "React/Next.js Starter Repo",
@@ -280,6 +282,7 @@
         "description": "Continuous Governance",
         "buttonText": "Buy Figma System",
         "buttonVariant": "outline",
+        "buttonHref": "/contact?plan=The%20Pipeline",
         "features": [
           "Everything in Sprint",
           "Automated GitHub PR audits",
@@ -296,10 +299,10 @@
     "title": "Ready to fix your frontend bottleneck?",
     "description": "Stop wasting engineering cycles on padding and hex codes. Get back to finding product-market fit",
     "buttonText": "Start Your 48-Hour Sprint",
-    "buttonHref": "/#pricing",
+    "buttonHref": "/contact",
     "cta": {
       "label": "Start Your 48-Hour Sprint",
-      "href": "/#pricing"
+      "href": "/contact"
     }
   }
 }

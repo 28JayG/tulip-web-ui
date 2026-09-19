@@ -1,19 +1,63 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import contactData from "@/data/contact.json";
+import homeData from "@/data/home.json";
 import { Container } from "@/components/layout/Container";
 import { SectionFrame } from "@/components/layout/SectionFrame";
 import { FaqSection } from "@/components/sections/common/FaqSection";
 import { CtaBanner } from "@/components/sections/common/CtaBanner";
-import { Mail, Phone, MapPin, ExternalLink, ChevronRight, Check } from "lucide-react";
+import { Mail, Phone, MapPin, ExternalLink, ChevronRight, Check, Sparkles } from "lucide-react";
 
-export default function ContactPage() {
-  const { hero, form, map, infoCards } = contactData;
+function ContactForm() {
+  const { form } = contactData;
+  const searchParams = useSearchParams();
+  const planParam = searchParams.get("plan");
+  const messageParam = searchParams.get("message");
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState<{
+    name: string;
+    price?: string;
+    period?: string;
+  } | null>(null);
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (messageParam) {
+      setMessage(messageParam);
+    } else if (planParam) {
+      const matched = homeData.pricing.plans.find(
+        (p) =>
+          p.name.toLowerCase() === planParam.toLowerCase() ||
+          p.id.toLowerCase() === planParam.toLowerCase()
+      );
+
+      if (matched) {
+        setSelectedPlan({
+          name: matched.name,
+          price: matched.price,
+          period: matched.period,
+        });
+        setMessage(
+          `Hi, I am interested in the ${matched.name} plan (${matched.price}${matched.period}). Could you please share more details and how we can get started?`
+        );
+      } else {
+        setSelectedPlan({ name: planParam });
+        setMessage(
+          `Hi, I am interested in the ${planParam} plan. Could you please share more details and how we can get started?`
+        );
+      }
+    }
+  }, [planParam, messageParam]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +67,165 @@ export default function ContactPage() {
       setSubmitted(true);
     }, 800);
   };
+
+  return (
+    <div className="rounded-[28px] md:rounded-[36px] bg-white p-7 sm:p-10 md:p-14 shadow-sm border border-[rgba(30,13,1,0.08)] max-w-2xl mx-auto">
+      <div className="mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#1e0d01] font-heading mb-1.5 leading-tight">
+          {form.title}
+        </h2>
+        <p className="text-sm text-[#1e0d01]/60">{form.description}</p>
+      </div>
+
+      {selectedPlan && (
+        <div className="mb-6 flex items-center justify-between gap-3 rounded-2xl bg-[#fff8f3] border border-[#f97518]/25 p-3.5 sm:px-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#1e0d01]">
+            <Sparkles className="h-4 w-4 text-[#f97518] shrink-0" />
+            <span>
+              Selected Plan:{" "}
+              <strong className="font-bold text-[#f97518]">{selectedPlan.name}</strong>
+              {selectedPlan.price && (
+                <span className="text-neutral-500 font-normal">
+                  {" "}
+                  ({selectedPlan.price}{selectedPlan.period})
+                </span>
+              )}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {submitted ? (
+        <div className="rounded-2xl bg-orange-50/70 border border-orange-200/80 p-8 text-center flex flex-col items-center justify-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f97518] text-white mb-4 shadow-sm">
+            <Check className="h-6 w-6 stroke-[3]" />
+          </div>
+          <h3 className="text-xl font-bold text-[#1e0d01] mb-2 font-heading">
+            Thank You!
+          </h3>
+          <p className="text-sm text-[#1e0d01]/70 max-w-md">
+            Your message has been received. Our team typically responds within 24 hours.
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* First Name & Last Name */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
+                {form.fields.firstName.label}
+              </label>
+              <input
+                type="text"
+                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder={form.fields.firstName.placeholder}
+                className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
+                {form.fields.lastName.label}
+              </label>
+              <input
+                type="text"
+                required
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder={form.fields.lastName.placeholder}
+                className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Email & Phone Number */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
+                {form.fields.email.label}
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={form.fields.email.placeholder}
+                className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
+                {form.fields.phone.label}
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={form.fields.phone.placeholder}
+                className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Message Textarea */}
+          <div>
+            <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
+              {form.fields.message.label}
+            </label>
+            <textarea
+              required
+              rows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={form.fields.message.placeholder}
+              className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all resize-none"
+            />
+          </div>
+
+          {/* Privacy Policy Checkbox */}
+          <div className="flex items-center gap-2.5 pt-1">
+            <input
+              type="checkbox"
+              id="privacy-check"
+              required
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="h-4 w-4 rounded border-neutral-300 text-[#f97518] focus:ring-[#f97518] cursor-pointer"
+            />
+            <label
+              htmlFor="privacy-check"
+              className="text-xs text-[#1e0d01]/70 cursor-pointer select-none"
+            >
+              {form.privacy.prefix}
+              <Link
+                href={form.privacy.linkHref}
+                className="text-[#f97518] hover:underline font-semibold"
+              >
+                {form.privacy.linkLabel}
+              </Link>
+            </label>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full flex items-center justify-center gap-1.5 rounded-full bg-[#f97518] hover:bg-[#e65f00] text-white py-3.5 px-6 text-sm font-bold shadow-md shadow-[#f97518]/25 hover:shadow-lg transition-all cursor-pointer disabled:opacity-70 mt-2"
+          >
+            <span>{isSubmitting ? "Sending..." : form.submitButton.label}</span>
+            <ChevronRight className="h-4 w-4 stroke-[2.5]" />
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+
+export default function ContactPage() {
+  const { hero, map, infoCards } = contactData;
 
   const getIcon = (type: string) => {
     switch (type.toLowerCase()) {
@@ -53,130 +256,16 @@ export default function ContactPage() {
             </p>
           </div>
 
-          {/* Contact Form Card */}
-          <div className="rounded-[28px] md:rounded-[36px] bg-white p-7 sm:p-10 md:p-14 shadow-sm border border-[rgba(30,13,1,0.08)] max-w-2xl mx-auto">
-            <div className="mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#1e0d01] font-heading mb-1.5 leading-tight">
-                {form.title}
-              </h2>
-              <p className="text-sm text-[#1e0d01]/60">
-                {form.description}
-              </p>
-            </div>
-
-            {submitted ? (
-              <div className="rounded-2xl bg-orange-50/70 border border-orange-200/80 p-8 text-center flex flex-col items-center justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f97518] text-white mb-4 shadow-sm">
-                  <Check className="h-6 w-6 stroke-[3]" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1e0d01] mb-2 font-heading">
-                  Thank You!
-                </h3>
-                <p className="text-sm text-[#1e0d01]/70 max-w-md">
-                  Your message has been received. Our team typically responds within 24 hours.
-                </p>
+          {/* Contact Form Card wrapped in Suspense for useSearchParams */}
+          <Suspense
+            fallback={
+              <div className="rounded-[28px] md:rounded-[36px] bg-white p-7 sm:p-10 md:p-14 shadow-sm border border-[rgba(30,13,1,0.08)] max-w-2xl mx-auto min-h-[400px] flex items-center justify-center">
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#f97518] border-t-transparent" />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* First Name & Last Name */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
-                      {form.fields.firstName.label}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={form.fields.firstName.placeholder}
-                      className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
-                      {form.fields.lastName.label}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={form.fields.lastName.placeholder}
-                      className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Email & Phone Number */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
-                      {form.fields.email.label}
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder={form.fields.email.placeholder}
-                      className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
-                      {form.fields.phone.label}
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder={form.fields.phone.placeholder}
-                      className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Message Textarea */}
-                <div>
-                  <label className="block text-xs font-semibold text-[#1e0d01] mb-1.5">
-                    {form.fields.message.label}
-                  </label>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder={form.fields.message.placeholder}
-                    className="w-full rounded-xl border border-neutral-200/90 bg-white px-4 py-3 text-sm text-[#1e0d01] placeholder:text-neutral-400 focus:border-[#f97518] focus:ring-1 focus:ring-[#f97518] outline-none transition-all resize-none"
-                  />
-                </div>
-
-                {/* Privacy Policy Checkbox */}
-                <div className="flex items-center gap-2.5 pt-1">
-                  <input
-                    type="checkbox"
-                    id="privacy-check"
-                    required
-                    checked={agreed}
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    className="h-4 w-4 rounded border-neutral-300 text-[#f97518] focus:ring-[#f97518] cursor-pointer"
-                  />
-                  <label htmlFor="privacy-check" className="text-xs text-[#1e0d01]/70 cursor-pointer select-none">
-                    {form.privacy.prefix}
-                    <Link
-                      href={form.privacy.linkHref}
-                      className="text-[#f97518] hover:underline font-semibold"
-                    >
-                      {form.privacy.linkLabel}
-                    </Link>
-                  </label>
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-1.5 rounded-full bg-[#f97518] hover:bg-[#e65f00] text-white py-3.5 px-6 text-sm font-bold shadow-md shadow-[#f97518]/25 hover:shadow-lg transition-all cursor-pointer disabled:opacity-70 mt-2"
-                >
-                  <span>{isSubmitting ? "Sending..." : form.submitButton.label}</span>
-                  <ChevronRight className="h-4 w-4 stroke-[2.5]" />
-                </button>
-              </form>
-            )}
-          </div>
+            }
+          >
+            <ContactForm />
+          </Suspense>
         </Container>
       </section>
 

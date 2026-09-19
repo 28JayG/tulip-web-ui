@@ -83,7 +83,7 @@ export function Header() {
 
               {/* Start a Sprint Solid Button */}
               <Link
-                href='/#pricing'
+                href='/contact'
                 className='flex items-center gap-1.5 rounded-full bg-white hover:bg-white/90 px-4 lg:px-4.5 py-2 text-xs lg:text-sm font-semibold text-[#1e0d01] shadow-xs border border-[rgba(30,13,1,0.06)] hover:shadow-sm transition-all shrink-0 whitespace-nowrap'
               >
                 <span>Start a Sprint</span>
@@ -141,7 +141,7 @@ export function Header() {
             </Link>
 
             <Link
-              href='/#pricing'
+              href='/contact'
               onClick={() => setMobileMenuOpen(false)}
               className='flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-xs font-bold text-[#1e0d01] shadow-xs border border-neutral-200'
             >

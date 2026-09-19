@@ -88,6 +88,7 @@ export interface PricingPlan {
   popular?: boolean;
   buttonText: string;
   buttonVariant: "primary" | "outline" | string;
+  buttonHref?: string;
   features: string[];
 }
 
