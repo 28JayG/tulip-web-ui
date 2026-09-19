@@ -24,7 +24,7 @@
   "actions": [
     {
       "label": "Sign In",
-      "href": "https://tulipai.framer.website/",
+      "href": "https://tulipai.onrender.com/",
       "variant": "ghost"
     },
     {

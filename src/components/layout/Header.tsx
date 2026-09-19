@@ -72,7 +72,7 @@ export function Header() {
             <div className='hidden md:flex items-center gap-2.5 lg:gap-3 shrink-0'>
               {/* Client Login Pill */}
               <Link
-                href='https://tulipai.framer.website/'
+                href='https://tulipai.onrender.com/'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='flex items-center gap-1.5 rounded-full border border-[rgba(30,13,1,0.12)] bg-transparent hover:bg-white/60 px-3.5 lg:px-4 py-2 text-xs lg:text-sm font-semibold text-[#f97518] transition-all shrink-0'
